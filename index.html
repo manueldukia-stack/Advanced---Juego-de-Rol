@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normativas | Advanced - Juego de Rol</title>
+  <meta name="description" content="Normativas oficiales del servidor de SAMP Advanced - Juego de Rol." />
+  <style>
+    :root{
+      --bg:#0f1115; /* fondo */
+      --bg-soft:#151823; /* tarjetas */
+      --bg-hover:#1b2030;
+      --text:#e8eaed;
+      --muted:#a7b0bd;
+      --brand:#00c896;
+      --danger:#ff6b6b;
+      --shadow: 0 8px 24px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, #0b0d12 0%, var(--bg) 120%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(8px);
+      background: rgba(10,12,17,.65);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .bar{
+      max-width: 1200px; margin: 0 auto;
+      display:flex; align-items:center; gap:16px; padding:14px 20px;
+    }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:700; }
+    .logo .dot{ width:10px; height:10px; border-radius:999px; background: var(--brand); box-shadow:0 0 24px var(--brand); }
+    .logo span{ color: var(--brand); letter-spacing:.3px; }
+
+    .tools{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+    .search{ position:relative; }
+    .search input{
+      background: var(--bg-soft); border:1px solid rgba(255,255,255,.06);
+      color: var(--text); border-radius: 999px; padding:10px 36px 10px 14px; width: 260px;
+      outline: none; transition: .2s border-color;
+    }
+    .search input:focus{ border-color: var(--brand); }
+    .btn{ cursor:pointer; user-select:none; border:none; border-radius: 999px; padding:10px 14px; background: var(--bg-soft); color: var(--text); }
+    .btn:hover{ background: var(--bg-hover); }
+
+    /* Layout */
+    .wrap{ max-width:1200px; margin:24px auto; padding:0 20px; display:grid; grid-template-columns: 280px 1fr; gap:24px; }
+    @media (max-width: 920px){ .wrap{ grid-template-columns: 1fr; } }
+
+    /* Sidebar */
+    .side{
+      position: sticky; top:78px; align-self: start;
+      background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .side h3{ margin:0 0 8px; font-size:14px; color: var(--muted); text-transform: uppercase; letter-spacing:.12em; }
+    .toc{ list-style:none; padding:0; margin:0; display:grid; gap:6px; }
+    .toc a{ display:block; text-decoration:none; color: var(--text); padding:8px 10px; border-radius:10px; }
+    .toc a:hover{ background: var(--bg-hover); }
+
+    /* Content */
+    .card{
+      background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    h1{ font-size: 28px; margin: 8px 0 12px; }
+    p.lead{ color: var(--muted); margin:0 0 16px; }
+
+    .actions{ display:flex; flex-wrap: wrap; gap:10px; margin-bottom: 12px; }
+
+    /* Accordions */
+    details{
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
+      padding: 14px 14px;
+      margin: 10px 0;
+    }
+    details[open]{ background: rgba(255,255,255,.04); }
+    summary{
+      list-style: none; cursor: pointer; position: relative; font-weight: 600;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary:after{
+      content:"\25BC"; /* triángulo */
+      position:absolute; right:0; top:0; font-size: 12px; transform: rotate(-90deg); transition: .2s transform;
+      color: var(--muted);
+    }
+    details[open] summary:after{ transform: rotate(0deg); }
+    .sub{ color: var(--muted); font-weight: 500; margin-top:6px; }
+
+    .rule-body{ margin-top: 10px; color: #cfd6de; }
+    .badge{ display:inline-block; padding:2px 8px; border-radius:999px; background: rgba(0,200,150,.12); color: var(--brand); font-size: 12px; border:1px solid rgba(0,200,150,.35); }
+
+    footer{ text-align:center; color: var(--muted); padding: 28px 0 40px; }
+    .muted{ color: var(--muted); }
+    .hr{ height:1px; background: rgba(255,255,255,.06); margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="logo"><span class="dot"></span><span>Advanced RP</span> <span class="muted">| Normativas</span></div>
+      <div class="tools">
+        <div class="search">
+          <input id="q" type="search" placeholder="Buscar (ej: multicuentas, CKPD)" aria-label="Buscar normativas" />
+        </div>
+        <button class="btn" id="expand">Abrir todo</button>
+        <button class="btn" id="collapse">Cerrar todo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <aside class="side">
+      <h3>Índice</h3>
+      <nav>
+        <ul class="toc">
+          <li><a href="#cuenta">1.0 Responsabilidad de la cuenta</a></li>
+          <li><a href="#multicuentas">1.1 Multicuentas</a></li>
+          <li><a href="#creacion">1.2 Creación de cuenta</a></li>
+          <li><a href="#correo">1.2.1 Correo y contraseña</a></li>
+          <li><a href="#personaje">1.3 Personaje</a></li>
+          <li><a href="#nombre-personaje">1.3.1 Nombre de personaje</a></li>
+          <li><a href="#cambio-nombre">1.4 Modificación de nombre</a></li>
+          <li><a href="#edad">1.4.1 Edad de personaje</a></li>
+          <li><a href="#interpretacion">1.4.2 Interpretación de personaje</a></li>
+          <li><a href="#lenguaje">1.4.3 Uso de expresiones y lenguaje</a></li>
+          <li><a href="#ckpd">1.5 CKPD</a></li>
+          <li><a href="#bloqueos">1.6 Bloqueos permanentes / exiliados</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section>
+      <div class="card">
+        <h1>Normativas del servidor</h1>
+        <p class="lead">Reglamento oficial de <strong>Advanced - Juego de Rol</strong>. Usá el buscador para filtrar y el índice para navegar rápido.</p>
+        <div class="hr"></div>
+
+        <!-- 1.0 -->
+        <article id="cuenta" data-keywords="cuenta responsabilidad robo terceros pertenencias sanciones">
+          <details open>
+            <summary>1.0 Responsabilidad de la cuenta <span class="badge">Cuenta</span></summary>
+            <div class="rule-body">
+              <p>El usuario será el único responsable de su cuenta dentro del servidor, solamente podrá ser utilizada por el mismo y no deberá ser compartida con otros miembros ajenos o no a la comunidad. En caso de que la cuenta sea tomada por terceros (sea la razón que sea) la administración se hará cargo mediante ticket. No se devolverá ningún tipo de pertenencia sin pruebas de antelación.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.1 -->
+        <article id="multicuentas" data-keywords="multicuentas múltiples cuentas comercio traspaso bienes bloqueo">
+          <details>
+            <summary>1.1 Multicuentas <span class="badge">Cuenta</span></summary>
+            <div class="rule-body">
+              <p>Está prohibido el poseer más de una cuenta dentro del servidor, en caso de poseer más de una se le deberá informar a la administración para su respectivo bloqueo, se aclara que no se desbloquearán a futuro bajo ninguna circunstancia. Si un usuario es encontrado haciendo multicuentas se le bloquearan todas las cuentas dentro del servidor.</p>
+              <details>
+                <summary>1.1.2 Comercio de cuentas</summary>
+                <div class="rule-body">
+                  <p>Está absolutamente prohibido la comercialización (compra y venta) de cuentas del servidor.</p>
+                </div>
+              </details>
+              <details>
+                <summary>1.1.3 Traspaso de bienes</summary>
+                <div class="rule-body">
+                  <p>El traspaso de bienes ya sea mediante personaje/personaje o cuenta/cuenta está totalmente prohibido, entiéndase como bienes cualquier objeto/propiedad perteneciente al sujeto. El usuario quedará bloqueado.</p>
+                </div>
+              </details>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.2 -->
+        <article id="creacion" data-keywords="creación cuenta nombre acceso login coherencia personajes">
+          <details>
+            <summary>1.2 Creación de cuenta <span class="badge">Cuenta</span></summary>
+            <div class="rule-body">
+              <p>El nombre de cuenta no necesariamente tiene que estar vinculado al personaje. Está se usará para ingresar al servidor pero no estará ni ligada ni debe tener coherencia con los personajes y/o su interpretación.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.2.1 -->
+        <article id="correo" data-keywords="correo contraseña restablecimiento seguridad 8 caracteres">
+          <details>
+            <summary>1.2.1 Correo electrónico y contraseña <span class="badge">Seguridad</span></summary>
+            <div class="rule-body">
+              <p>Deben utilizar un correo electrónico que sea verídico y operativo en algún servicio, esto es fundamental para casos de ser necesario un restablecimiento de contraseña. Las contraseñas deben resultar fáciles de recordar y seguras con mínimo 8 caracteres alfanuméricos (opcional).</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.3 -->
+        <article id="personaje" data-keywords="personaje general">
+          <details>
+            <summary>1.3 Personaje</summary>
+            <div class="rule-body">
+              <!-- vacío a propósito, ver subreglas -->
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.3.1 -->
+        <article id="nombre-personaje" data-keywords="nombre personaje nombre_apellido apodos diminutivos celebridades">
+          <details>
+            <summary>1.3.1 Nombre de personaje</summary>
+            <div class="rule-body">
+              <p>Al momento de crear un 'Nombre_Apellido' para el personaje, se debe procurar seguir el formato idóneo, evitando que contenga faltas ortográficas o letras adicionales que son completamente innecesarias. Está prohibido el uso de apodos y/o diminutivos, además de tomar algún nombre de personaje célebre o reconocido, sea internacional o propio de un país o cultura.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.4 -->
+        <article id="cambio-nombre" data-keywords="modificación cambio nombre costo coins usd ck ckpd cadena perpetua bienes">
+          <details>
+            <summary>1.4 Modificación de nombre del personaje</summary>
+            <div class="rule-body">
+              <p>Las razones para solicitar un cambio de nombre deben ser válidas y con una argumentación del por qué se desea hacer ese cambio, todo debe ser planteado de manera correcta, el administrador encargado decidirá sí es una razón válida o no.</p>
+              <p>Los cambio de nombre tiene un costo de 3 coins/USD, exceptuando el primer cambio de nombre. Esto aplica siempre y cuando el usuario por elección propia desee cambiar de nombre para cambiar de rol, porque el nombre esta mal puesto o no le guste.</p>
+              <p>Si deseas realizar un cambio de nombre por CK y/o CKPD no tendrá costo, pero se perderá el 50% de los bienes que tengas en el personaje al solicitar el cambio.</p>
+              <p>En cuanto a los cambios de nombre por cadena perpetua tampoco tendrá un costo, pero se perderá el 75% de los bienes del personaje.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.4.1 -->
+        <article id="edad" data-keywords="edad mayor 18">
+          <details>
+            <summary>1.4.1 Edad de personaje</summary>
+            <div class="rule-body">
+              <p>El personaje debe tener obligatoriamente más de 18 años, esto para evitar roles que no son deseados en la comunidad, además de que son delitos en la vida real, no viene al caso querer interpretarlo.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.4.2 -->
+        <article id="interpretacion" data-keywords="interpretación rol progresiva coherencia psicológica entorno nula">
+          <details>
+            <summary>1.4.2 Interpretación de personaje</summary>
+            <div class="rule-body">
+              <p>El modo de juego se basa en interpretar un personaje y escenificar sus acciones, interactuando con otros jugadores y con el propio entorno. La interpretación de nuestro personaje deberá regirse por una serie de características y hechos. Cualquier cambio en las características psicológicas o en el modo de actuar de nuestro personaje deberá tener una justificación InGame y deberá verse reflejado de manera progresiva. En lo posible, debemos tratar de empatizar con nuestro personaje y pensar cómo actuaría en cada situación. Está prohibido llevar cualquier acción que no guarde coherencia con las características psicológicas o el contexto de nuestro personaje será considerada como nula interpretación.</p>
+              <p>No se permitirá llevar a cabo roles o acciones que alteren la vulnerabilidad tanto física como psicológica de nuestro personaje sin un justificativo coherente o que sean motivos totalmente irreales.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.4.3 -->
+        <article id="lenguaje" data-keywords="expresiones lenguaje castellano diálogos">
+          <details>
+            <summary>1.4.3 Uso de expresiones y lenguaje</summary>
+            <div class="rule-body">
+              <p>Se deberá especificar algunos detalles sobre los diálogos cuya principal escritura de comunicación será por predeterminado el castellano.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.5 CKPD -->
+        <article id="ckpd" data-keywords="ckpd policía facciones condena heridas bajas propiedades vip dinero confiscado leo">
+          <details>
+            <summary>1.5 CKPD</summary>
+            <div class="rule-body">
+              <p>Las facciones policiales pueden dictaminar CKPD obligatorios si los usuarios se niegan a rolear con ellas o a cumplir su condena cuando están en estado de muerte, únicamente autorizado por un miembro del staff presente. Si un personaje cae en estado de muerte como víctima de rol contra una facción policial, siempre tendrá la opción de interpretar heridas leves para sobrevivir al incidente y cumplir su condena. Por ejemplo: Si estás involucrado en un tiroteo contra la policía, eres abatido y caes en estado de muerto, estarás sometido a rolear libremente las heridas que tengas para posteriormente continuar con el rol. Caso contrario, se considerará la muerte del personaje. Esta norma NO aplica si eres dado de baja por otras organizaciones ajenas a LEO.</p>
+              <p>Puntos a tener en cuenta a la hora de realizarse el CKPD, el usuario perderá todo tipo de propiedades qué tenga en su personaje (autos, negocios, casas) además que perderà un %50 de dinero qué tenga en sus bolsillos, lo único que quedará sin modificación es el dinero del banco, horas, y puntos de habilidad. Este caso cambiará si la cuenta tiene un Vip activo, ya qué no perderá las propiedades a su nombres, solo el dinero, y los objetos confiscados por la organización LEO.</p>
+            </div>
+          </details>
+        </article>
+
+        <!-- 1.6 Bloqueos -->
+        <article id="bloqueos" data-keywords="bloqueos permanentes exiliados estándares plataformas sin apelación encubrir identidad">
+          <details>
+            <summary>1.6 Bloqueos permanentes / exiliados</summary>
+            <div class="rule-body">
+              <p>El equipo administrativo del servidor se reserva el derecho de prohibir el ingreso de cualquier usuario el cual no cumpla con los estándares estipulados o con las normativas detalladas en este reglamento. Restringiéndole el acceso de todas las plataformas pertenecientes a Vinewood Stories sin posibilidad de apelación.</p>
+              <p>Cualquier usuario que encubra la identidad de un usuario exiliado de la comunidad recibirá un bloqueo permanente, ante cualquier situación dudosa el jugador tiene la obligación de reportar lo sucedido permitiendo así la intervención administrativa.</p>
+            </div>
+          </details>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Advanced - Juego de Rol — Normativas.
+  </footer>
+
+  <script>
+    // Filtrado por texto
+    const input = document.getElementById('q');
+    const articles = Array.from(document.querySelectorAll('article'));
+
+    function normalize(str){
+      return (str || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,'');
+    }
+
+    function filter(){
+      const q = normalize(input.value);
+      articles.forEach(a => {
+        const text = normalize(a.innerText);
+        a.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+    input.addEventListener('input', filter);
+
+    // Expandir / colapsar todos
+    const expandAllBtn = document.getElementById('expand');
+    const collapseAllBtn = document.getElementById('collapse');
+
+    function setAll(open){
+      document.querySelectorAll('details').forEach(d => d.open = open);
+    }
+    expandAllBtn.addEventListener('click', () => setAll(true));
+    collapseAllBtn.addEventListener('click', () => setAll(false));
+
+    // Subrayar el item activo del índice
+    const links = document.querySelectorAll('.toc a');
+    const map = [...links].map(a => ({ id: a.getAttribute('href').slice(1), a }));
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const item = map.find(m => m.id === e.target.id);
+        if(item){
+          if(e.isIntersecting){ item.a.style.background = 'var(--bg-hover)'; }
+          else { item.a.style.background = 'transparent'; }
+        }
+      })
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+    articles.forEach(a => obs.observe(a));
+  </script>
+</body>
+</html>

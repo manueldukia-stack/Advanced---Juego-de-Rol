@@ -1,0 +1,149 @@
+/* styles.css */
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap');
+
+:root{
+  --brand: #00c896;
+  --bg-dark: #0b0d12;
+  --muted: #6b7280;
+}
+
+/* reset básico */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background: var(--bg-dark);
+  color:#111;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== NAVBAR (transparente sobre hero) ===== */
+.topbar{
+  position:fixed;
+  left:0;right:0;top:0;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 36px;
+  z-index:80;
+  transition: background .25s ease, backdrop-filter .25s ease, box-shadow .25s;
+}
+.topbar .logo{ color: white; font-weight:700; display:flex; gap:8px; align-items:center; }
+.topbar .logo .dot{ width:10px;height:10px;border-radius:999px;background:var(--brand); box-shadow:0 0 18px var(--brand); }
+.topbar nav{ display:flex; gap:24px; align-items:center; }
+.topbar nav a{
+  color: #fff; text-decoration:none; font-weight:600; opacity:.95; padding:8px 6px;
+}
+.topbar.scrolled{
+  background: rgba(9,10,13,.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+}
+
+/* ===== HERO ===== */
+.hero{
+  height: 420px;
+  background-image: url('assets/hero.jpg');
+  background-size: cover;
+  background-position: center center;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding-top:72px; /* para que no tape el nav */
+}
+
+/* overlay para oscurecer la imagen */
+.hero::before{
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(10,10,14,.55) 0%, rgba(10,10,14,.45) 60%, rgba(10,10,14,.7) 100%);
+  z-index:1;
+}
+
+/* título grande con cada línea subrayada */
+.hero-title{
+  position:relative;
+  z-index:2;
+  color:#fff;
+  font-family: 'Montserrat', sans-serif;
+  line-height:0.92;
+  font-weight:800;
+  text-transform:none;
+  font-size: clamp(44px, 12vw, 120px);
+  letter-spacing: -1px;
+  margin:0 18px;
+}
+.hero-title span{
+  display:block;
+  position:relative;
+  padding: 6px 0 26px; /* espacio para la línea */
+}
+
+/* línea blanca gruesa debajo de cada línea */
+.hero-title span::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:8px;
+  width:78%;
+  height:10px;
+  background:#fff;
+  border-radius:8px;
+}
+
+/* ===== CONTENIDO BLANCO SOLAPADO ===== */
+.content{
+  background:#fff;
+  color:#111;
+  margin-top: -60px; /* solapa sobre el hero */
+  border-top-left-radius:12px;
+  border-top-right-radius:12px;
+  box-shadow: 0 -18px 50px rgba(7,8,10,.45);
+  padding: 56px 36px;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* Tipografía del cuerpo */
+.container h2{
+  font-size:20px; color:#111; margin-bottom:18px; font-weight:700;
+}
+.container p{
+  color:#1f2937;
+  font-size:18px;
+  line-height:1.85;
+  margin-bottom:16px;
+}
+
+/* lista con viñetas amplias (como en la imagen) */
+.container ul{ margin-left:20px; margin-bottom:20px; }
+.container li{
+  margin:14px 0;
+  font-size:17px;
+  line-height:1.8;
+}
+
+/* detalle visual (iconito izquierda) */
+.side-icon{
+  position:fixed; left:18px; bottom:18px;
+  width:42px;height:42px;border-radius:50%;
+  background:#fff; display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  z-index:90; color:#111;
+}
+
+/* Responsivo */
+@media (max-width:920px){
+  .topbar{ padding:0 18px; }
+  .hero{ height:300px; padding-top:72px; }
+  .hero-title{ font-size: clamp(36px, 14vw, 72px); }
+  .content{ padding: 30px 18px; margin-top:-40px; }
+  .container p{ font-size:16px; line-height:1.8; }
+}
